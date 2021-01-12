@@ -53,7 +53,8 @@ class Blob:
         return xs/len(self.pixels), ys/len(self.pixels)
 
     def __str__(self):
-        return f"{str(len(self.pixels))} {self.center()}"
+        center = self.center()
+        return "{mass} ({x:.4f}, {y:.4f})".format(mass=self.mass(), x=center[0], y=center[1])
 
 
 def main():
@@ -70,8 +71,8 @@ def main():
     for i in range(random.randrange(100, 200)):
         c.add(random.random()*20, random.random()*20)
 
-    print('first blob :', b, b.mass())
-    print('second blob :', c, c.mass())
+    print('first blob :', b)
+    print('second blob :', c)
     print('distance from b to c :', b.distanceTo(c))
     print('distance from b to c :', c.distanceTo(b))
 
