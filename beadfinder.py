@@ -6,16 +6,34 @@ class Blob:
     pixels = []
 
     def add(self, x, y):
-        pass
+        '''
+        add one pixle to pixels list
+        '''
+        if [x, y] not in self.pixels:
+            self.pixels.append([x, y])
 
     def mass(self):
-        pass
+        '''
+        return mass of the Blob
+        '''
+        return len(self.pixels)
 
     def distanceTo(self, c):
         pass
 
+    def center(self):
+        '''
+        return center of the Blob
+        '''
+        xs = 0
+        ys = 0
+        for p in self.pixels:
+            xs += p[0]
+            ys += p[1]
+        return xs/len(self.pixels), ys/len(self.pixels)
+
     def __str__(self):
-        return str(len(self.pixels))
+        return f"{str(len(self.pixels))} {self.center()}"
 
 
 class BeadFinder:
