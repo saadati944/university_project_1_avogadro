@@ -7,6 +7,7 @@ class Blob:
     '''
     The blob object contains the coordinates of connected pixels.
     '''
+
     def __init__(self):
         '''
         create new instance of blob object
@@ -53,7 +54,32 @@ class Blob:
 
 class BeadFinder:
     def __init__(self, pic, tau):
-        pass
+        '''
+        create new instance of beadfinder object
+        and initialization self.pic and self.tau
+        '''
+        self.tau = tau
+        self.pic = picture.Picture(pic)
+
+    def __getavg(self, clr):
+        '''
+        calculate average of R, G, B values of a color
+        like converting colors to gray scale
+        '''
+        return (clr.getRed()+clr.getGreen()+clr.getBlue())/3
+
+    def filter(self):
+        '''
+        filter pic according to threshold
+        colors under tau => black
+        colors above tau => white
+        '''
+        for i in range(self.pic.width()):
+            for j in range(self.pic.height()):
+                if self.__getavg(self.pic.get(i, j)) < self.tau:
+                    self.pic.set(i, j, color.Color(0, 0, 0))
+                else:
+                    self.pic.set(i, j, color.Color(255, 255, 255))
 
     def getBeads(self, min_pixels):
         pass
