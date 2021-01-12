@@ -1,5 +1,6 @@
 import sys
 from stdlibrary import picture, color
+import blob
 
 
 class BeadFinder:
@@ -105,7 +106,7 @@ class BeadFinder:
                         continue
 
                     # detect new blob and add it to blobs list
-                    new_blob = Blob()
+                    new_blob = blob.Blob()
                     self.__detect_blob(new_blob, x, y)
                     self.blobs.append(new_blob)
                     last_pixel_was_white = True
