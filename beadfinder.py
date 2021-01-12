@@ -4,6 +4,9 @@ from stdlibrary import picture, color
 
 
 class Blob:
+    '''
+    The blob object contains the coordinates of connected pixels.
+    '''
     def __init__(self):
         '''
         create new instance of blob object
