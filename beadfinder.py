@@ -14,11 +14,17 @@ class Blob:
         '''
         self.pixels = []
 
+    def check_new_pixel(self, x, y):
+        '''
+        Check if the [x, y] is in the list of pixels
+        '''
+        return [x, y] in self.pixels
+
     def add(self, x, y):
         '''
         add one pixle to pixels list
         '''
-        if [x, y] not in self.pixels:
+        if not self.check_new_pixel(x, y):
             self.pixels.append([x, y])
 
     def mass(self):
@@ -60,6 +66,7 @@ class BeadFinder:
         '''
         self.tau = tau
         self.pic = picture.Picture(pic)
+        self.blobs = []
 
     def __getavg(self, clr):
         '''
@@ -68,7 +75,7 @@ class BeadFinder:
         '''
         return (clr.getRed()+clr.getGreen()+clr.getBlue())/3
 
-    def filter(self):
+    def __filter(self):
         '''
         filter pic according to threshold
         colors under tau => black
@@ -82,7 +89,18 @@ class BeadFinder:
                     self.pic.set(i, j, color.Color(255, 255, 255))
 
     def getBeads(self, min_pixels):
-        pass
+        '''
+        this function will find all beads in the pic step by step :
+
+        1. filter images
+        2. scan rows and find first white pixel
+        3. detect_blob according to that white pixel
+        4. continue scanning from first black pixel after that white pixel
+        '''
+        self.__filter()
+        for y in range(self.pic.height()):
+            for x in range(self.pic.width()):
+                pass
 
 
 def main():
