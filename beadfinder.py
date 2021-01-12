@@ -88,6 +88,37 @@ class BeadFinder:
                 else:
                     self.pic.set(i, j, color.Color(255, 255, 255))
 
+    def __detect_blob(self, blob, x, y):
+        '''
+        detect blob
+
+        How this function works:
+        - If the pixel [x, y] is already added to the list, return.
+        - If the pixel [x, y] is not white, return.
+        - Add pixel [x, y] to the list.
+        - Check back all four neighbor pixels [x, y] (if possible).
+        '''
+        # only check red because after filtering the pic,
+        # the red, green and blue values are the same
+        if self.pic.get(x, y).getRed() == 255:
+            # return if pixel was added before
+            if [x, y] in blob.check_new_pixel(x, y):
+                return
+            blob.add(x, y)
+        else:
+            # return if pixel was black
+            return
+        w = self.pic.width()
+        h = self.pic.height()
+        if x > 0:
+            self.__detect_blob(blob, x-1, y)
+        if x < w-1:
+            self.__detect_blob(blob, x+1, y)
+        if y > 0:
+            self.__detect_blob(blob, x, y-1)
+        if y < h - 1:
+            self.__detect_blob(blob, x, y+1)
+
     def getBeads(self, min_pixels):
         '''
         this function will find all beads in the pic step by step :
