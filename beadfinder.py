@@ -67,6 +67,10 @@ class BeadFinder:
         self.tau = tau
         self.pic = picture.Picture(pic)
         self.blobs = []
+        # filter the pic and delete the extras
+        self.__filter()
+        # find all beads
+        self.__findBeads()
 
     def __getavg(self, clr):
         '''
@@ -102,12 +106,14 @@ class BeadFinder:
         # the red, green and blue values are the same
         if self.pic.get(x, y).getRed() == 255:
             # return if pixel was added before
-            if [x, y] in blob.check_new_pixel(x, y):
+            if blob.check_new_pixel(x, y):
                 return
             blob.add(x, y)
         else:
             # return if pixel was black
             return
+
+        # check all neighbor pixels
         w = self.pic.width()
         h = self.pic.height()
         if x > 0:
@@ -119,7 +125,7 @@ class BeadFinder:
         if y < h - 1:
             self.__detect_blob(blob, x, y+1)
 
-    def getBeads(self, min_pixels):
+    def __findBeads(self):
         '''
         this function will find all beads in the pic step by step :
 
@@ -128,10 +134,45 @@ class BeadFinder:
         3. detect_blob according to that white pixel
         4. continue scanning from first black pixel after that white pixel
         '''
-        self.__filter()
+        # rows
         for y in range(self.pic.height()):
+
+            # this variable will remember whether the last pixel checked is white or not
+            last_pixel_was_white = False
+
+            # columns
             for x in range(self.pic.width()):
-                pass
+
+                if self.pic.get(x, y).getRed() == 255:
+                    # if last checked pixel was white so this pixel was added to a blob before
+                    # and there is no need to re-check
+                    if last_pixel_was_white:
+                        continue
+
+                    # if this pixel has already been added to a blob
+                    # then there is no need to re-check
+                    duplicate_pixel = False
+                    for b in self.blobs:
+                        if b.check_new_pixel(x, y):
+                            last_pixel_was_white = True
+                            duplicate_pixel = True
+                            break
+                    if duplicate_pixel:
+                        continue
+
+                    # detect new blob and add it to blobs list
+                    new_blob = Blob()
+                    self.__detect_blob(new_blob, x, y)
+                    self.blobs.append(new_blob)
+                    last_pixel_was_white = True
+                else:
+                    last_pixel_was_white = False
+
+    def getBeads(self, min_pixels):
+        '''
+        return blobs with at least min_pixels of pixels
+        '''
+        return [b for b in self.blobs if b.mass() >= min_pixels]
 
 
 def main():
