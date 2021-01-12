@@ -1,9 +1,14 @@
 import sys
+import math
 from stdlibrary import picture, color
 
 
 class Blob:
-    pixels = []
+    def __init__(self):
+        '''
+        create new instance of blob object
+        '''
+        self.pixels = []
 
     def add(self, x, y):
         '''
@@ -19,7 +24,14 @@ class Blob:
         return len(self.pixels)
 
     def distanceTo(self, c):
-        pass
+        '''
+        calculate distance to another Blob
+        formula :
+            d = radical( (x2-x1)^2 + (y2-y1)^2)
+        '''
+        center1 = self.center()
+        center2 = c.center()
+        return math.sqrt((center2[0]-center1[0])**2 + (center2[1] - center1[1])**2)
 
     def center(self):
         '''
