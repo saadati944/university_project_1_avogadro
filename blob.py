@@ -54,3 +54,27 @@ class Blob:
 
     def __str__(self):
         return f"{str(len(self.pixels))} {self.center()}"
+
+
+def main():
+    '''
+    test blob object
+    '''
+    import random
+
+    b = Blob()
+    for i in range(random.randrange(100, 200)):
+        b.add(random.random()*20, random.random()*20)
+
+    c = Blob()
+    for i in range(random.randrange(100, 200)):
+        c.add(random.random()*20, random.random()*20)
+
+    print('first blob :', b, b.mass())
+    print('second blob :', c, c.mass())
+    print('distance from b to c :', b.distanceTo(c))
+    print('distance from b to c :', c.distanceTo(b))
+
+
+if __name__ == "__main__":
+    main()
