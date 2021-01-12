@@ -176,6 +176,11 @@ class BeadFinder:
 
 
 def main():
+    '''
+    main function
+    pass parameters in this format :
+    $python beadfinder.py min_pixels threshold filename 
+    '''
     min_pixels = int(sys.argv[1])
     tau = float(sys.argv[2])
     input_file = sys.argv[3]
@@ -184,3 +189,6 @@ def main():
 
     for blb in bf.getBeads(min_pixels):
         print(blb)
+
+if __name__=="__main__":
+    main()
