@@ -25,7 +25,7 @@ def detect_displacement(beads1, beads2):
         # print min_distance only when the blob
         # moves less than the delta
         if min_distance != delta+1:
-            print(min_distance)
+            print("{:.4f}".format(min_distance))
 
 
 def main():
