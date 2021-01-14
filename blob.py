@@ -10,6 +10,8 @@ class Blob:
         '''
         create new instance of blob object
         '''
+        self.xs = 0
+        self.ys = 0
         self.pixels = []
 
     def check_new_pixel(self, x, y):
@@ -24,6 +26,8 @@ class Blob:
         '''
         if not self.check_new_pixel(x, y):
             self.pixels.append([x, y])
+            self.xs += x
+            self.ys += y
 
     def mass(self):
         '''
@@ -45,12 +49,7 @@ class Blob:
         '''
         return center of the Blob
         '''
-        xs = 0
-        ys = 0
-        for p in self.pixels:
-            xs += p[0]
-            ys += p[1]
-        return xs/len(self.pixels), ys/len(self.pixels)
+        return self.xs/len(self.pixels), self.ys/len(self.pixels)
 
     def __str__(self):
         center = self.center()
