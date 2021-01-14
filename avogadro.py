@@ -4,6 +4,20 @@ import stdlibrary.stdio as stdio
 def main():
     '''
     this function will receive resaults of beadtracker
+    file and calculate the D. and according to this equation
+
+           k T
+    D = ―――――――――
+         6 π Ƞ ρ
+    
+    calculate the k.
+    k is the boltzmann constant
+
+    and then calculate avogadro number with this formula
+
+         R
+    A = ―――
+         k
     '''
     inp = input().split('\n')
     while not stdio.isEmpty():
