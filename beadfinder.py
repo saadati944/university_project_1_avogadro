@@ -13,7 +13,7 @@ class BeadFinder:
         self.pic = picture.Picture(pic)
         self.blobs = []
         # filter the pic and delete the extras
-        self.__filter()
+        # self.__filter()
         # find all beads
         self.__findBeads()
 
@@ -23,19 +23,6 @@ class BeadFinder:
         like converting colors to gray scale
         '''
         return (clr.getRed()+clr.getGreen()+clr.getBlue())/3
-
-    def __filter(self):
-        '''
-        filter pic according to threshold
-        colors under tau => black
-        colors above tau => white
-        '''
-        for i in range(self.pic.width()):
-            for j in range(self.pic.height()):
-                if self.__getavg(self.pic.get(i, j)) < self.tau:
-                    self.pic.set(i, j, color.Color(0, 0, 0))
-                else:
-                    self.pic.set(i, j, color.Color(255, 255, 255))
 
     def __detect_blob(self, blob, x, y):
         '''
@@ -49,7 +36,7 @@ class BeadFinder:
         '''
         # only check red because after filtering the pic,
         # the red, green and blue values are the same
-        if self.pic.get(x, y).getRed() == 255:
+        if self.__getavg(self.pic.get(x, y)) >= self.tau:
             # return if pixel was added before
             if blob.check_new_pixel(x, y):
                 return
@@ -88,7 +75,7 @@ class BeadFinder:
             # columns
             for x in range(self.pic.width()):
 
-                if self.pic.get(x, y).getRed() == 255:
+                if self.__getavg(self.pic.get(x, y)) >= self.tau:
                     # if last checked pixel was white so this pixel was added to a blob before
                     # and there is no need to re-check
                     if last_pixel_was_white:
