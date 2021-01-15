@@ -9,7 +9,7 @@ def main():
            k T
     D = ―――――――――
          6 π Ƞ ρ
-    
+
     calculate the k.
     k is the boltzmann constant
 
@@ -19,7 +19,7 @@ def main():
     A = ―――
          k
     '''
-    inp = input().split('\n')
+    inp = []
     while not stdio.isEmpty():
         inp.append(stdio.readFloat())
 
@@ -35,7 +35,7 @@ def main():
     # print resaults
     print('Boltzman :', k, '\nAvogadro :', (8.31446/k))
 
-    
+
 
 if __name__ == "__main__":
     main()
