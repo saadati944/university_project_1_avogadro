@@ -19,14 +19,13 @@ def main():
     A = ―――
          k
     '''
-    inp = []
-    while not stdio.isEmpty():
-        inp.append(stdio.readFloat())
 
     D = 0
-    for i in inp:
-        D += float(i)**2
-    D /= 2*len(inp)
+    count=0
+    while not stdio.isEmpty():
+        D += stdio.readFloat()**2
+        count += 1
+    D /= 2*count
     D *= (175e-9)**2
 
     # boltzman constant
