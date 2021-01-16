@@ -1,0 +1,4 @@
+➜ a**@s********4  ***/project git:(main) time (python3 beadtracker.py 25 180.0 25.0 ./testCase_1/frame00* | python3 avogadro.py**
+Boltzman : 1.2557525978751373e-23 
+Avogadro : 6.621097192288451e+23
+( python3 beadtracker.py 25 180.0 25.0 ./testCase_1/frame00* | python3 ; )  82.16s user 0.05s system 99% cpu 1:22.23 total
