@@ -1,4 +1,4 @@
-# Guess Avogadro
+# Estimate Avogadro
 
 This is my first university project and I should calculate the Avogadro number according to displacements of some blobs in water.
 
