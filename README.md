@@ -27,7 +27,7 @@ Boltzman : 1.2557525978751373e-23
 Avogadro : 6.621097192288451e+23
 ```
 and measured time :
-> 82.16s user 0.05s system 99% cpu 1:22.23 total
+> 68.70s user 0.12s system 92% cpu 1:14.23 total
 
 ## requirements
 
