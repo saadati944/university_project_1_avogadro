@@ -32,7 +32,7 @@ def main():
     k = (6 * D * math.pi * 9.135e-4 * 5e-7) / 297
 
     # print resaults
-    print("Boltzman : {:.4}\nAvogadro : {:.4}".format(k, 8.31446/k))
+    print("Boltzman : {:.5}\nAvogadro : {:.5}".format(k, 8.31446/k))
 
 
 
