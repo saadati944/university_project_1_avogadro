@@ -23,8 +23,8 @@ time (python3 beadtracker.py 25 180.0 25.0 ./testCase_1/frame00* | python3 avoga
 
 sample output
 ```
-Boltzman : 1.2557525978751373e-23 
-Avogadro : 6.621097192288451e+23
+Boltzman : 1.2557e-23 
+Avogadro : 6.6210e+23
 ```
 and measured time :
 > 68.70s user 0.12s system 92% cpu 1:14.23 total
